@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>k8s_games</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+
+<body class="stackedit">
+  <div class="rectangle green big">
+    <div class="rectangle grey big">
+      <div class="rectangle white big">
+  <div class="stackedit__html"><h1 id="kubernetes-games">Kubernetes Games</h1>
+<h5 id="background">Background:</h5>
+<p>I was in the interview process for a DevOps role, that mentioned <strong>kubernetes</strong> on the job description. Although I was a big fan of container technology and container orchestration tooling, I had no experience actually setting up a cluster. This led me to first complete a Linkedin Learning course, <a href="https://www.linkedin.com/learning/kubernetes-microservices-23787657?u=0">Kubernetes: Microservices</a>. Here I set up a local minikube cluster with Calico as the CNI(container network interface), deployed backend and frontend services, configured pod to pod network policies, and set up an nginx ingress controller. Although this was cool, I wanted to set up a cluster that felt really cool.</p>
+<p>I first found <a href="https://developer.hpe.com/blog/deploying-super-mario-game-on-kubernetes-in-hpe-greenlake-for-private-cloud-enterprise/">Deploying Super Mario game on Kubernetes</a>, and wanted to follow along, although I was going to use Azure Kubernetes Services instead of HPE because I had already started a free 30 day account. To this end, I found this article, <a href="https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-terraform?pivots=development-environment-azure-cli">Deploy AKS cluster using Terraform</a> and hoped to use both to achieve my goal.</p>
+<h1 id="section"></h1>
+<h5 id="process-simplified-here-but-was-not-so-simple-at-first">Process (simplified here, but was not so simple at first):</h5>
+<p>Using the Terraform article as a guide, I grabbed the tf files, making some small changes like changing <code>vm_size = "Standard_D2_v2"</code> to <code>vm_size = "standard_dc2as_v5"</code>. This change only came from getting errors when running <code>terraform apply</code> later on. Standard_dc2as_v5 seemed to be the cheapest VM option available to me in my free plan.</p>
+<ol>
+<li>Run <code>az login</code> on your local command line. Follow link to site to login.</li>
+<li>Copy <code>providers.tf, ssh.tf, main.tf, variables.tf, outputs.tf</code> from the <a href="https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-terraform?pivots=development-environment-azure-cli">article</a>.</li>
+<li>Run <code>terraform init -upgrade</code></li>
+<li>Run <code>terraform plan -out main.tfplan</code></li>
+<li>Run <code>terraform apply main.tfplan</code>. Give it a few minutes to set up the cluster (took 5m15s for me).</li>
+<li>Set a variable to hold your new resource group name: <code>resource_group_name=$(terraform output -raw resource_group_name)</code></li>
+<li>Check out your new aks cluster name with this command (using the resource group name you saved): <code>az aks list \ --resource-group $resource_group_name \ --query "[].{\"K8s cluster name\":name}" \ --output table</code></li>
+<li>Save the Kubernetes config so that local kubectl command can communicate with remote cluster: <code>echo "$(terraform output kube_config)" &gt; ./azurek8s</code></li>
+<li>Remove <code>&lt;&lt; EOT</code> at the beginning and <code>EOT</code> at the end of the azurek8s file if you see them in there.</li>
+<li>Set local environment variable for kubectl to know where the config file is <code>export KUBECONFIG=./azurek8s</code></li>
+<li>Your cluster is officially set up and you can see the cluster nodes with <code>kubectl get nodes</code>.</li>
+<li><code>kubectl apply -f games.yaml</code></li>
+<li><code>kubectl apply -f ingress.yaml</code></li>
+<li><code>kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.14.1/deploy/static/provider/cloud/deploy.yaml</code> (<a href="https://kubernetes.github.io/ingress-nginx/deploy/#azure">Azure Specific</a>)</li>
+<li><code>kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.19.2/cert-manager.yaml</code></li>
+<li><code>kubectl apply -f certificate.yaml</code></li>
+<li><code>kubectl apply -f cluster-issuer.yaml</code></li>
+<li>Wait 10 min</li>
+<li>Play Tetris and Mario!!!</li>
+</ol>
+<img src="../images/tetris.png" alt="tetris" height="400"/><img src="../images/mario.png" alt="mario" height="400"/>
+
+<blockquote>
+<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+<div class="section">
+  <div class="text button"><a href="../projects.html">back</a></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+
+</html>

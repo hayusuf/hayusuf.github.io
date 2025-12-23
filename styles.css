@@ -1,0 +1,203 @@
+body {
+	background-color: #ADBC9E;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	margin: 0;
+}
+
+.body {
+	margin: auto auto;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+}
+
+/* Text Properties */
+.text {
+	@font-face { font-family: 'IBM Plex Mono'; src: url('fonts/IBMPlexMono-Regular.ttf'); } 
+	font-family: 'IBM Plex Mono';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 13pt;
+	line-height: 16px;
+	text-align: center;
+
+	color: #000000;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	width: 100%
+}
+
+li {
+	margin: 8px;
+	height:max-content;
+
+}
+
+.button:hover {
+	font-weight: bold;
+}
+
+.button a {
+	text-decoration: none;
+	color: #000000;
+}
+
+#name {
+	font-size: 20pt;
+	margin: 12px 0 8px 0;
+}
+
+#name a {
+	text-decoration: none;
+	color: #000000;
+}
+
+
+.divider {
+  width: 100%; /* Spans the full width of its container */
+  height: 1px; /* The thickness of the line */
+  margin: 8px;
+  background-color: #ccc; /* The color of the line */
+}
+
+.rectangle {
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+	border-radius: 20px;
+}
+
+.green {
+	background: #CDDFC1;
+}
+
+.grey {
+	
+	background: #E8ECDF;
+}
+
+.white {
+	background: #FAFCF6;
+}
+
+.small_1 {
+	width: 285px;
+	height: 285px;
+}
+
+.small_2 {
+	width: 265px;
+	height: 265px;
+}
+
+.small_3 {
+	width: 245px;
+	height: 245px;
+}
+
+.medium_1 {
+	width: 285px;
+	height: 485px;
+}
+
+.medium_2 {
+	width: 265px;
+	height: 465px;
+}
+
+.medium_3 {
+	width: 245px;
+	height: 445px;
+}
+
+.big {
+	width: auto;
+	height: 100%;
+	margin: 10px 10px;
+}
+
+#naalayn {
+	width: 40px;
+	height: auto;
+	margin: 10px;
+	margin-bottom: 0;
+}
+
+#yusuf {
+	justify-self: center;
+	width: 150px;
+	height: auto;
+	margin: 10px;
+	border-radius: 20px;
+}
+
+.section {
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#attribution {
+	margin:0;
+	font-size: 0px;
+}
+
+.section>.textbox {
+	margin: 0px 20px;
+	text-align: center;
+}
+
+.top_bar {
+	justify-content: center;
+}
+
+.icon_img {
+    width: 24x;
+    height: 24px;
+	margin: 10px;
+}
+
+.textbox>p {
+	margin-bottom: 0;
+}
+
+.justify_space {
+	justify-content: space-evenly;
+}
+
+.project_list {
+	width: 100%;
+}
+
+.project_row {
+	width: 100%;
+	line-height: 20px;
+}
+
+.project_name {
+	margin: 5px 10px;
+	float: left;
+}
+
+.project_date {
+	margin: 5px 10px;
+	float: right;
+}
+
+.stackedit {
+	height: 100%;
+	width:100%;
+	min-width: 600px;
+	justify-content: center;
+}
+
