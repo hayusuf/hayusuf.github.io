@@ -32,7 +32,7 @@
 <li>Remove <code>&lt;&lt; EOT</code> at the beginning and <code>EOT</code> at the end of the azurek8s file if you see them in there.</li>
 <li>Set local environment variable for kubectl to know where the config file is <code>export KUBECONFIG=./azurek8s</code></li>
 <li>Your cluster is officially set up and you can see the cluster nodes with <code>kubectl get nodes</code>.</li>
-<li><code>kubectl apply -f games.yaml</code></li>
+<li><code>kubectl apply -f games.yaml</code> (<a href="https://github.com/hayusuf/k8s_games">Available on my Github</a>)</li>
 <li><code>kubectl apply -f ingress.yaml</code></li>
 <li><code>kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.14.1/deploy/static/provider/cloud/deploy.yaml</code> (<a href="https://kubernetes.github.io/ingress-nginx/deploy/#azure">Azure Specific</a>)</li>
 <li><code>kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.19.2/cert-manager.yaml</code></li>
